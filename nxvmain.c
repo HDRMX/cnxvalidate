@@ -34,10 +34,9 @@ static void defaultLogPrint(char *key, void *data)
 /*------------------------------------------------------------------*/
 static void defaultneatLogPrint(char *key, void *data)
 {
-
-        if(!strcmp(key,"sev") || !strcmp(key,"nxdlPath") ){
+	if(!strcmp(key,"sev") || !strcmp(key,"nxdlPath") ){
 		fprintf(stdout,"\n... ");
-        }
+	}
 	if(strchr((char *)data, ' ') != NULL){
 		fprintf(stdout,"%s=\"%s\" ", key, (char *)data);
 	} else {
@@ -97,57 +96,56 @@ int main(int argc, char *argv[])
 
 
 	while ((c = getopt (argc, argv, "a:l:p:obduter")) != -1) {
-    switch (c)
+		switch (c)
     {
-      case 'e':
-        filt.neat = 1;
-        break;
-      case 'o':
-        filt.warnOpt = 1;
-        break;
-      case 'b':
-        filt.warnBase = 1;
-        break;
-      case 'u':
-        filt.warnUndefined = 1;
-        break;
-      case 'd':
-	filt.debug = 1;
-	break;
-      case 'r':
-	filt.procroot = 1;
-	break;
-      case 't':
-	filt.neat = 1;
-	filt.debug = 1;
-	filt.warnUndefined = 1;
-	filt.warnBase = 1;
-	filt.warnOpt = 1;
-	filt.procroot = 1;
-	break;
-      case 'a':
-	appDef = strdup(optarg);
-	break;
-      case 'p':
-	hdf5Path = strdup(optarg);
-	break;
-      case 'l':
-	free(defDir);
-	defDir = strdup(optarg);
-	break;
-      case '?':
-        if (optopt == 'a' ||  optopt == 'l' || optopt == 'p')
-          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
-        else if (isprint (optopt))
-          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
-        else
-          fprintf (stderr,
-                   "Unknown option character `\\x%x'.\n",
-                   optopt);
-        return 1;
-      default:
-        abort ();
-    }
+			case 'e':
+				filt.neat = 1;
+				break;
+			case 'o':
+				filt.warnOpt = 1;
+				break;
+			case 'b':
+				filt.warnBase = 1;
+				break;
+			case 'u':
+				filt.warnUndefined = 1;
+				break;
+			case 'd':
+				filt.debug = 1;
+				break;
+			case 'r':
+				filt.procroot = 1;
+				break;
+			case 't':
+				filt.neat = 1;
+				filt.debug = 1;
+				filt.warnUndefined = 1;
+				filt.warnBase = 1;
+				filt.warnOpt = 1;
+				filt.procroot = 1;
+				break;
+			case 'a':
+				appDef = strdup(optarg);
+				break;
+			case 'p':
+				hdf5Path = strdup(optarg);
+				break;
+			case 'l':
+				free(defDir);
+				defDir = strdup(optarg);
+				break;case '?':
+				if (optopt == 'a' ||  optopt == 'l' || optopt == 'p')
+					fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+				else if (isprint (optopt))
+					fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+				else
+					fprintf (stderr,
+						 "Unknown option character `\\x%x'.\n",
+						 optopt);
+				return 1;
+			default:
+				abort ();
+		}
 	}
 
 	if(argc <= optind){
